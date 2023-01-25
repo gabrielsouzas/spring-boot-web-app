@@ -1,13 +1,13 @@
-package com.webapplication.controllers;
+package com.webapplication.springbootwebapp.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class EventoController {
+public class IndexController {
     
     @RequestMapping("/")
-    public String form(){
-        return "evento/formEvento";
+    public String index(){
+        return "index";
     }
 }
