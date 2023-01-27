@@ -11,40 +11,55 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 
+    <link rel="stylesheet" href="style/style.css">
+
 </head>
 <body>
-    <h1>Evento</h1>
-    <h3><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista de Eventos</a></h3>
 
-    <div th:each="evento : ${evento}" class="container">
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo">Evento</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/eventos" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Lista de Eventos</a></li>
+              </ul>
+            </div>
+          </nav>
+    </header>
+
+    <div th:each="evento : ${evento}" class="container detalhesEvento">
+        <h5>Detalhes do Evento</h5>
         <div class="row">
             <p>Nome: <span th:text="${evento.nome}"></span></p>
             <p>Local: <span th:text="${evento.local}"></span></p>
             <p>Data: <span th:text="${evento.data}"></span></p>
             <p>Horario: <span th:text="${evento.horario}"></span></p>
         </div>
-
+    </div>
         <th:block th:include="mensagemValidacao"></th:block>
 
-        <form method="post">
-            Nome: <input type="text" name="nomeConvidado" value="">
-            RG: <input type="text" name="rg" value="">
-            <button class="waves-effect waves-light btn" type="submit">Adicionar</button>
-        </form>
-    </div>
+        <div class="container formConvidado">
+            <form method="post">
+                Nome: <input type="text" name="nomeConvidado" value="">
+                RG: <input type="text" name="rg" value="">
+                <button class="waves-effect waves-light btn" type="submit">Adicionar</button>
+            </form>
+        </div>
+    
 
-    <h5>Lista de Convidados</h5>
-    <table class="container">
+    <table class="container tabelaConvidado">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>RG</th>
+                <th>Deletar</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="convidado : ${convidados}">
                 <td><span th:text="${convidado.nomeConvidado}"></span></td>
                 <td><span th:text="${convidado.rg}"></span></td>
+                <td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('EC#deletarConvidado').arg(0, convidado.rg)).build()}"><i class="material-icons center">delete</i></a></td>
             </tr>
         </tbody>
     </table>

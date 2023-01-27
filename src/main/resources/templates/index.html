@@ -11,10 +11,20 @@
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
 
+    <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <h1>Lista de Eventos</h1>
-    <h3><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Evento</a></h3>
+
+    <header>
+        <nav>
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo">Lista de Eventos</a>
+              <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/cadastrarEvento" class="waves-effect waves-light btn"><i class="material-icons left">add_circle_outline</i>Cadastrar Evento</a></li>
+              </ul>
+            </div>
+          </nav>
+    </header>
 
     <table class="container">
         <thead>
@@ -23,6 +33,7 @@
                 <th>Local</th>
                 <th>Data</th>
                 <th>Horário</th>
+                <th>Deletar</th>
             </tr>
         </thead>
         <tbody>
@@ -31,6 +42,7 @@
                 <td><span th:text="${evento.local}"></span></td>
                 <td><span th:text="${evento.data}"></span></td>
                 <td><span th:text="${evento.horario}"></span></td>
+                <td><a class="waves-effect waves-light btn-small botaoDeletar" th:href="${(#mvc.url('EC#deletarEvento').arg(0, evento.codigo)).build()}"><i class="material-icons center">delete</i></a></td>
             </tr>
         </tbody>
     </table>
